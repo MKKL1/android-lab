@@ -6,78 +6,92 @@
     android:layout_height="match_parent"
     tools:context=".lab1.Lab1GUIActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
     <TextView
         android:id="@+id/imieTextView"
-        android:layout_width="64dp"
-        android:layout_height="56dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:text="Imie"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imieEditText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imieEditText" />
 
 
     <EditText
         android:id="@+id/imieEditText"
         android:layout_width="0dp"
         android:layout_height="59dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Wpisz imie"
+        android:hint="@string/wpisz_imie"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toEndOf="@+id/imieTextView"
-        app:layout_constraintTop_toTopOf="@+id/imieTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
         android:id="@+id/nazwiskoEditText"
         android:layout_width="0dp"
         android:layout_height="62dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Wpisz nazwisko"
+        android:hint="@string/wpisz_nazwisko"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/nazwiskoTextView"
-        app:layout_constraintTop_toTopOf="@+id/nazwiskoTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/imieEditText" />
 
     <TextView
         android:id="@+id/nazwiskoTextView"
-        android:layout_width="61dp"
-        android:layout_height="62dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Nazwisko"
+        android:text="@string/nazwisko"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nazwiskoEditText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imieTextView" />
+        app:layout_constraintTop_toTopOf="@+id/nazwiskoEditText" />
 
     <TextView
         android:id="@+id/ocenyTextView"
-        android:layout_width="89dp"
-        android:layout_height="31dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Liczba ocen"
+        android:text="@string/liczba_ocen"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ocenyEditText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nazwiskoTextView" />
+        app:layout_constraintTop_toTopOf="@+id/ocenyEditText" />
 
     <EditText
         android:id="@+id/ocenyEditText"
         android:layout_width="0dp"
         android:layout_height="62dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="Liczba ocen (5-15)"
+        android:hint="@string/liczba_ocen_zakres"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/ocenyTextView"
-        app:layout_constraintTop_toTopOf="@+id/ocenyTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/nazwiskoEditText" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -91,7 +105,7 @@
         android:layout_width="243dp"
         android:layout_height="49dp"
         android:layout_marginTop="8dp"
-        android:text="Oceny"
+        android:text="@string/oceny"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +128,7 @@
                 android:id="@+id/resultTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wynik"
+                android:text="@string/wynik"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/resultButton"
                 app:layout_constraintEnd_toEndOf="parent"

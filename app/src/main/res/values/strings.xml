@@ -7,6 +7,13 @@
     <string name="finish_success">Gratulacje, otrzymujesz zaliecznie!</string>
     <string name="finish_failure">Wysyłam podanie o zaliczenie warunkowe</string>
     <string name="leaving_app">Opuszczasz aplikacje!</string>
+    <string name="wpisz_imie">Wpisz imie</string>
+    <string name="wpisz_nazwisko">Wpisz nazwisko</string>
+    <string name="nazwisko">Nazwisko</string>
+    <string name="liczba_ocen">Liczba ocen</string>
+    <string name="liczba_ocen_zakres">Liczba ocen (5-15)</string>
+    <string name="oceny">Oceny</string>
+    <string name="wynik">Wynik</string>
     <string-array name="nazwy_przedmiotow">
         <item>Matematyka</item>
         <item>Fizyka</item>

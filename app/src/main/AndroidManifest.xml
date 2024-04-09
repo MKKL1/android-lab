@@ -14,9 +14,11 @@
         tools:targetApi="31">
         <activity
             android:name=".lab1.Lab1GUIActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".lab1.OcenyActivity"
+            android:parentActivityName=".lab1.Lab1GUIActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
