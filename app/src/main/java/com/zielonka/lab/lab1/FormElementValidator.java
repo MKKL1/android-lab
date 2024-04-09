@@ -1,4 +1,4 @@
-package com.zielonka.lab;
+package com.zielonka.lab.lab1;
 
 import android.view.View;
 import android.widget.EditText;

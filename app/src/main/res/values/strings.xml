@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">laboratoria android</string>
+    <string name="grade_average">Oblicz średnią</string>
+    <string name="result_average_text">Twoja średnia to %1$.2f</string>
+    <string name="result_button_success_text">Super :)</string>
+    <string name="result_button_failure_text">Tym razem mi nie poszło</string>
+    <string name="finish_success">Gratulacje, otrzymujesz zaliecznie!</string>
+    <string name="finish_failure">Wysyłam podanie o zaliczenie warunkowe</string>
+    <string name="leaving_app">Opuszczasz aplikacje!</string>
+    <string-array name="nazwy_przedmiotow">
+        <item>Matematyka</item>
+        <item>Fizyka</item>
+        <item>Chemia</item>
+        <item>Informatyka</item>
+        <item>Biologia</item>
+        <item>Geografia</item>
+        <item>Historia</item>
+        <item>WOS</item>
+        <item>Język polski</item>
+        <item>Język angielski</item>
+        <item>Język niemiecki</item>
+        <item>Język francuski</item>
+        <item>Język rosyjski</item>
+        <item>Język hiszpański</item>
+        <item>1</item>
+    </string-array>
 </resources>

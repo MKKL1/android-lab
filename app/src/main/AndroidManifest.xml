@@ -13,7 +13,10 @@
         android:theme="@style/Theme.LaboratoriaAndroid"
         tools:targetApi="31">
         <activity
-            android:name=".Lab1GUIActivity"
+            android:name=".lab1.Lab1GUIActivity"
+            android:exported="false" />
+        <activity
+            android:name=".lab1.OcenyActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
