@@ -39,4 +39,5 @@ public class OcenyViewHolder extends RecyclerView.ViewHolder implements RadioGro
     public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
         modelOceny.setOcena(radioIdToValue.get(checkedId));
     }
+
 }

@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -76,6 +77,12 @@ public class Lab1GUIActivity extends AppCompatActivity {
                     .create();
             alert.show();
         });
+
+        findViewById(R.id.resultView).setVisibility(View.GONE);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     private final ActivityResultLauncher<Intent> ocenyActivityResult = registerForActivityResult(
@@ -95,6 +102,9 @@ public class Lab1GUIActivity extends AppCompatActivity {
 
     private void drawResult() {
         findViewById(R.id.resultView).setVisibility(View.VISIBLE);
+//        findViewById(R.id.resultTextView).setVisibility(View.VISIBLE);
+//        findViewById(R.id.resultButton).setVisibility(View.VISIBLE);
+
         ((TextView) findViewById(R.id.resultTextView))
                 .setText(getResources().getString(R.string.result_average_text, average));
 
@@ -154,6 +164,9 @@ public class Lab1GUIActivity extends AppCompatActivity {
         zdane = savedInstanceState.getBoolean("zdane");
         returned = savedInstanceState.getBoolean("returned");
         average = savedInstanceState.getDouble("average");
+        findViewById(R.id.resultView).setVisibility(View.GONE);
+//        findViewById(R.id.resultTextView).setVisibility(View.GONE);
+//        findViewById(R.id.resultButton).setVisibility(View.GONE);
         drawResult();
         super.onRestoreInstanceState(savedInstanceState);
     }
