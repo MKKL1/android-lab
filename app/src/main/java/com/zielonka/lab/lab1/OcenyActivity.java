@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,20 +21,24 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class OcenyActivity extends AppCompatActivity {
-    private ArrayList<ModelOceny> oceny;
-    private RecyclerView.LayoutManager layoutManager;
-    private Parcelable mListState;
+    private List<ModelOceny> oceny;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oceny);
 
+        Log.i("OcenyActivity:", "create");
+
         Intent intent = getIntent();
-        String[] nazwyPrzedmiotow = getResources().getStringArray(R.array.nazwy_przedmiotow);
-        oceny = Arrays.stream(nazwyPrzedmiotow)
-                .map(nazwa -> new ModelOceny(nazwa, 2))
-                .limit(intent.getIntExtra("oceny", 5))
-                        .collect(Collectors.toList())
+        if(oceny == null) {
+            String[] nazwyPrzedmiotow = getResources().getStringArray(R.array.nazwy_przedmiotow);
+            oceny = Arrays.stream(nazwyPrzedmiotow)
+                    .map(nazwa -> new ModelOceny(nazwa, 2))
+                    .limit(intent.getIntExtra("oceny", 5))
+                    .collect(Collectors.toList());
+        }
+
         fillGrades();
         findViewById(R.id.average_button).setOnClickListener(view -> {
             double average = oceny.stream()
@@ -54,7 +59,7 @@ public class OcenyActivity extends AppCompatActivity {
         OcenyModelAdapter ocenyModelAdapter = new OcenyModelAdapter(this, oceny);
         RecyclerView listaOcen = findViewById(R.id.lista_ocen);
         listaOcen.setAdapter(ocenyModelAdapter);
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         listaOcen.setLayoutManager(layoutManager);
     }
 
@@ -67,11 +72,11 @@ public class OcenyActivity extends AppCompatActivity {
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState){
-        super.onRestoreInstanceState(savedInstanceState);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             oceny = Arrays.stream(Objects.requireNonNull(savedInstanceState.getParcelableArray("state", ModelOceny.class))).collect(Collectors.toList());
         }
         fillGrades();
+        super.onRestoreInstanceState(savedInstanceState);
     }
 }

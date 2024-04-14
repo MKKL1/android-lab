@@ -32,6 +32,11 @@ public class OcenyViewHolder extends RecyclerView.ViewHolder implements RadioGro
         nazwa.setText(modelOceny.getNazwa());
 
         RadioGroup ocena = itemView.findViewById(R.id.buttons);
+        radioIdToValue.forEach((id, value) -> {
+            if(value == modelOceny.getOcena()) {
+                ocena.check(id);
+            }
+        });
         ocena.setOnCheckedChangeListener(this);
     }
 

@@ -53,4 +53,12 @@ public class ModelOceny implements Parcelable {
         parcel.writeString(nazwa);
         parcel.writeInt(ocena);
     }
+
+    @Override
+    public String toString() {
+        return "ModelOceny{" +
+                "nazwa='" + nazwa + '\'' +
+                ", ocena=" + ocena +
+                '}';
+    }
 }
