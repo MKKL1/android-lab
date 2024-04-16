@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.zielonka.lab.lab1.Lab1GUIActivity;
+import com.zielonka.lab.lab2.Lab2Activity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         findViewById(R.id.button1).setOnClickListener(view -> {
             startActivity(new Intent(this, Lab1GUIActivity.class));
+        });
+        findViewById(R.id.button2).setOnClickListener(view -> {
+            startActivity(new Intent(this, Lab2Activity.class));
         });
     }
 }

@@ -21,6 +21,10 @@
             android:parentActivityName=".lab1.Lab1GUIActivity"
             android:exported="false" />
         <activity
+            android:name=".lab2.Lab2Activity"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
