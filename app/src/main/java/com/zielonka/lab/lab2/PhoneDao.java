@@ -18,7 +18,7 @@ public interface PhoneDao {
     void updatePhone(Phone phone);
 
     @Query("SELECT * FROM phone")
-    LiveData<List<Phone>> selectAll();
+    LiveData<List<Phone>> getAll();
 
     @Delete
     void deletePhone(Phone phone);

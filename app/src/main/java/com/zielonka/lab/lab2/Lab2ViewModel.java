@@ -16,4 +16,12 @@ public class Lab2ViewModel extends AndroidViewModel {
         phoneRepository = new PhoneRepository(application);
         this.allPhones = phoneRepository.getAllPhones();
     }
+
+    public LiveData<List<Phone>> getAllPhones() {
+        return allPhones;
+    }
+
+    public void deleteAll() {
+        phoneRepository.deleteAll();
+    }
 }

@@ -13,7 +13,7 @@ public class PhoneRepository {
     public PhoneRepository(Application app) {
         LabDatabase db = LabDatabase.getDatabase(app);
         phoneDao = db.phoneDao();
-        allPhones = phoneDao.selectAll();
+        allPhones = phoneDao.getAll();
     }
 
     public void addPhone(Phone phone) {
