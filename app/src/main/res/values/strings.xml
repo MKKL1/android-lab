@@ -14,6 +14,14 @@
     <string name="liczba_ocen_zakres">Liczba ocen (5-15)</string>
     <string name="oceny">Oceny</string>
     <string name="wynik">Wynik</string>
+    <string name="phone_producer_text">Producer</string>
+    <string name="phone_model">Model</string>
+    <string name="phone_version">Version</string>
+    <string name="phone_website">Website</string>
+    <string name="website_button_text">Enter website</string>
+    <string name="cancel_button_text">Cancel</string>
+    <string name="save_button_text">Save</string>
+    <string name="delete_all">Remove all</string>
     <string-array name="nazwy_przedmiotow">
         <item>Matematyka</item>
         <item>Fizyka</item>

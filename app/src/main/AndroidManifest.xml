@@ -13,17 +13,21 @@
         android:theme="@style/Theme.LaboratoriaAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".lab2.PhoneFormActivity"
+            android:exported="false"
+            android:parentActivityName=".lab2.Lab2Activity" />
+        <activity
             android:name=".lab1.Lab1GUIActivity"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".lab1.OcenyActivity"
-            android:parentActivityName=".lab1.Lab1GUIActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".lab1.Lab1GUIActivity" />
         <activity
             android:name=".lab2.Lab2Activity"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

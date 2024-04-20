@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".lab2.PhoneFormActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:shrinkColumns="*"
+        android:stretchColumns="2">
+
+        <TableRow android:layout_height="wrap_content" android:layout_width="wrap_content">
+            <TextView android:text="@string/phone_producer_text"/>
+
+            <EditText
+                android:id="@+id/producer"
+                android:layout_height="50dp"
+                android:layout_span="2"
+                android:inputType="text" />
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/phone_model"/>
+            <EditText android:id="@+id/model"
+                android:layout_height="50dp"
+                android:layout_span="2"
+                android:inputType="text"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/phone_version"/>
+            <EditText android:id="@+id/version"
+                android:layout_height="50dp"
+                android:layout_span="2"
+                android:inputType="text"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/phone_website"/>
+            <EditText android:id="@+id/website"
+                android:layout_height="50dp"
+                android:layout_span="2"
+                android:inputType="text"/>
+        </TableRow>
+        <TableRow>
+            <Button android:id="@+id/website_button"
+                android:text="@string/website_button_text"
+                style="?android:attr/buttonBarButtonStyle"/>
+            <Button android:id="@+id/cancel_button"
+                android:text="@string/cancel_button_text"
+                style="?android:attr/buttonBarButtonStyle"/>
+            <Button android:id="@+id/save_button"
+                android:text="@string/save_button_text"
+                style="?android:attr/buttonBarButtonStyle"/>
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

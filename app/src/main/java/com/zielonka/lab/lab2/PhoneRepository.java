@@ -17,19 +17,27 @@ public class PhoneRepository {
     }
 
     public void addPhone(Phone phone) {
-        phoneDao.addPhone(phone);
+        LabDatabase.databaseWriteExecutor.execute(() -> {
+            phoneDao.addPhone(phone);
+        });
     }
 
     public void updatePhone(Phone phone) {
-        phoneDao.updatePhone(phone);
+        LabDatabase.databaseWriteExecutor.execute(() -> {
+            phoneDao.updatePhone(phone);
+        });
     }
 
     public void deletePhone(Phone phone) {
-        phoneDao.deletePhone(phone);
+        LabDatabase.databaseWriteExecutor.execute(() -> {
+            phoneDao.deletePhone(phone);
+        });
     }
 
     public void deleteAll() {
-        phoneDao.deleteAll();
+        LabDatabase.databaseWriteExecutor.execute(() -> {
+            phoneDao.deleteAll();
+        });
     }
 
     public LiveData<List<Phone>> getAllPhones() {
