@@ -22,6 +22,13 @@
     <string name="cancel_button_text">Cancel</string>
     <string name="save_button_text">Save</string>
     <string name="delete_all">Remove all</string>
+    <string name="address">Adres</string>
+    <string name="url">https://owocnegodnia.pl/wp-content/uploads/2022/09/Banan-str-1.png</string>
+    <string name="get_info">Download</string>
+    <string name="filesize">File size</string>
+    <string name="filetype">File type</string>
+    <string name="downloadFile">Download file</string>
+    <string name="downloaded_bytes">Downloaded bytes</string>
     <string-array name="nazwy_przedmiotow">
         <item>Matematyka</item>
         <item>Fizyka</item>

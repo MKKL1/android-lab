@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.zielonka.lab.lab1.Lab1GUIActivity;
 import com.zielonka.lab.lab2.Lab2Activity;
+import com.zielonka.lab.lab3.Lab3Activity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
         });
         findViewById(R.id.button2).setOnClickListener(view -> {
             startActivity(new Intent(this, Lab2Activity.class));
+        });
+        findViewById(R.id.button3).setOnClickListener(view -> {
+            startActivity(new Intent(this, Lab3Activity.class));
         });
     }
 }
