@@ -80,21 +80,18 @@ public class Lab2Activity extends AppCompatActivity {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     Intent data = result.getData();
-                    handleActivityResult(data);
+                    Phone phone;
+                    if(data != null && (phone = data.getParcelableExtra("phone")) != null) {
+                        if(data.getBooleanExtra("edited", false)){
+                            viewModel.updatePhone(phone);
+                        } else {
+                            viewModel.addPhone(phone);
+                        }
+                    }
                 }
             }
     );
 
-    public void handleActivityResult(Intent data){
-        Phone phone;
-        if(data != null && (phone = data.getParcelableExtra("phone")) != null) {
-            if(data.getBooleanExtra("edited", false)){
-                viewModel.updatePhone(phone);
-            } else {
-                viewModel.addPhone(phone);
-            }
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

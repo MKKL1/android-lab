@@ -54,7 +54,6 @@ public class PhoneFormActivity extends AppCompatActivity {
         binding.saveButton.setOnClickListener(v -> {
             isValid = true;
 
-            //ty
             if(binding.producer.getText().toString().isEmpty()){
                 isValid = false;
                 binding.producer.setError("Producer cannot be empty!");

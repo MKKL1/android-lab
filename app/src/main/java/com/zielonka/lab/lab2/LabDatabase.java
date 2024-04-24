@@ -36,8 +36,7 @@ public abstract class LabDatabase extends RoomDatabase {
         return  INSTANCE;
     }
 
-    private static final int NUMBER_OF_THREADS = 4;
-    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(4);
 
     private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback(){
         @Override
