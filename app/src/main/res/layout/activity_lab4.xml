@@ -4,26 +4,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.zielonka.lab.lab4.DrawingSurface
-        android:id="@+id/drawing_surface"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="0dp"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/colors"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lab5submain"
+        android:layout_marginTop="5sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <com.zielonka.lab.lab4.DrawingSurface
+            android:id="@+id/paintSurfaceView"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/lab5submain"
+<!--            android:background="@drawable/border"-->
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/fragmentList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/lab5submain"
+        />
+
+    <LinearLayout
+        android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@id/drawing_surface"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingBottom="10dp">
 
         <Button
+            android:id="@+id/button_red"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kolor" />
+            android:backgroundTint="@color/red"
+            />
 
-    </androidx.cardview.widget.CardView>
+        <Button
+            android:id="@+id/button_yellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/yellow" />
+
+        <Button
+            android:id="@+id/button_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue" />
+
+        <Button
+            android:id="@+id/button_green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green" />
+
+        <Button
+            android:id="@+id/clearPaintButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/x"
+            android:textAlignment="center"
+            android:textSize="11sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
