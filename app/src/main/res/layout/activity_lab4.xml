@@ -18,17 +18,16 @@
         android:id="@+id/lab5submain"
         android:layout_marginTop="5sp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="550dp"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <com.zielonka.lab.lab4.DrawingSurface
             android:id="@+id/paintSurfaceView"
             android:layout_width="match_parent"
-            android:layout_height="550dp"
+            android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/lab5submain"
-<!--            android:background="@drawable/border"-->
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -78,7 +77,7 @@
             android:id="@+id/clearPaintButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/x"
+            android:text="x"
             android:textAlignment="center"
             android:textSize="11sp" />
 

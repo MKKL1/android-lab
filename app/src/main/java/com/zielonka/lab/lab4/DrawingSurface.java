@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -14,6 +15,10 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Objects;
 
 public class DrawingSurface extends SurfaceView implements SurfaceHolder.Callback, Runnable{
     private final SurfaceHolder holder;
@@ -42,8 +47,11 @@ public class DrawingSurface extends SurfaceView implements SurfaceHolder.Callbac
 
         dotPaint = new Paint(pathPaint);
         dotPaint.setStyle(Paint.Style.FILL);
+    }
 
-
+    public void setPaintColor(int color) {
+        pathPaint.setColor(color);
+        dotPaint.setColor(color);
     }
 
     public void resumeDrawing() {
@@ -57,6 +65,7 @@ public class DrawingSurface extends SurfaceView implements SurfaceHolder.Callbac
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         performClick();
+        Log.i(DrawingSurface.class.getSimpleName(), "click");
         synchronized (DrawingSurface.this) {
             float X = event.getX();
             float Y = event.getY();
@@ -72,6 +81,7 @@ public class DrawingSurface extends SurfaceView implements SurfaceHolder.Callbac
                 case MotionEvent.ACTION_UP:
                     canvas.drawCircle(X, Y, 25, dotPaint);
                     canvas.drawPath(path, pathPaint);
+                    path.reset();
                     break;
             }
         }
@@ -121,13 +131,47 @@ public class DrawingSurface extends SurfaceView implements SurfaceHolder.Callbac
         canvas = new Canvas(bitmap);
         canvas.drawARGB(255, 255, 255, 255);
         identityMatrix = new Matrix();
-        resumeDrawing();
     }
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) { }
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-//        threadWorking = false;
+        synchronized (DrawingSurface.this) {
+            threadWorking = false;
+        }
+    }
+
+    public void clearCanvas() {
+        canvas.drawARGB(255, 255, 255, 255);
+    }
+
+    public boolean saveCanvas(String filename) {
+        String imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
+//        robimy folder LAB5 na rysunki
+        File dir = new File(imagesDir + File.separator + "LAB5");
+        if (!dir.exists()){
+            if (!dir.mkdirs()) {
+                Log.e("ERROR", "Problem przy tworzeniu katalogu " + dir);
+                return false;
+            }
+        }
+//        dodanie folderu do sciezki zapisu pliku
+        imagesDir+=File.separator+"LAB5";
+
+//        co odpalenie apki bez zmiany parametru filename w Lab5Activity będą się nadpisywac, chyba spoko mniej kasowania śmeici z telefonu
+        filename +=  "_" + PaintingContent.getPaintingItems().size() + ".jpg";
+//        filename +=  "rysunek_" + UUID.randomUUID().toString() + ".jpg";
+        PaintingContent.PaintingItem paintingItem = new PaintingContent.PaintingItem(filename, imagesDir + "/" + filename);
+
+        File file = new File(imagesDir, filename);
+        try {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(file));
+            PaintingContent.addItem(paintingItem);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

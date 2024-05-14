@@ -29,6 +29,9 @@
     <string name="filetype">File type</string>
     <string name="downloadFile">Download file</string>
     <string name="downloaded_bytes">Downloaded bytes</string>
+    <string name="imgDescription">img desc</string>
+    <string name="save_image">save image</string>
+    <string name="show_images">show images</string>
     <string-array name="nazwy_przedmiotow">
         <item>Matematyka</item>
         <item>Fizyka</item>
