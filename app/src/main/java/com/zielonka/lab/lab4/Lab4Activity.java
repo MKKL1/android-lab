@@ -3,12 +3,16 @@ package com.zielonka.lab.lab4;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -21,6 +25,7 @@ import com.zielonka.lab.databinding.ActivityLab4Binding;
 public class Lab4Activity extends AppCompatActivity {
 
     private ActivityLab4Binding binding;
+    private boolean galleryVisible;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +38,6 @@ public class Lab4Activity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         DrawingSurface drawingSurface = binding.paintSurfaceView;
-        drawingSurface.resumeDrawing();
 
         binding.buttonRed.setOnClickListener( v -> drawingSurface.setPaintColor(Color.RED));
         binding.buttonYellow.setOnClickListener( v -> drawingSurface.setPaintColor(Color.YELLOW));
@@ -65,7 +69,9 @@ public class Lab4Activity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         if (getSupportFragmentManager().getBackStackEntryCount()==1 ){
             binding.lab5submain.setVisibility(View.VISIBLE);
+            binding.buttons.setVisibility(View.VISIBLE);
             binding.paintSurfaceView.clearCanvas();
+            galleryVisible = false;
         }
         if (getSupportFragmentManager().getBackStackEntryCount() > 0){
             getSupportFragmentManager().popBackStack();
@@ -74,11 +80,15 @@ public class Lab4Activity extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 
+    private final ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {});
+
+
     private void saveImage(){
-        if (ContextCompat.checkSelfPermission
-                (this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 23);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            }
         }
 
         if (binding.paintSurfaceView.saveCanvas("rysunek")) {
@@ -91,10 +101,33 @@ public class Lab4Activity extends AppCompatActivity {
     private void showImages(){
         binding.paintSurfaceView.clearCanvas();
         binding.lab5submain.setVisibility(View.INVISIBLE);
+        binding.buttons.setVisibility(View.INVISIBLE);
+
+        galleryVisible = true;
+        
         PaintingFragmentList fragmentList = new PaintingFragmentList();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main, fragmentList)
                 .addToBackStack("gallery")
                 .commit();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("galleryVisible", galleryVisible);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        galleryVisible = savedInstanceState.getBoolean("visible");
+        if(galleryVisible){
+            binding.lab5submain.setVisibility(View.INVISIBLE);
+            binding.buttons.setVisibility(View.INVISIBLE);
+        } else{
+            binding.lab5submain.setVisibility(View.VISIBLE);
+            binding.buttons.setVisibility(View.VISIBLE);
+        }
     }
 }

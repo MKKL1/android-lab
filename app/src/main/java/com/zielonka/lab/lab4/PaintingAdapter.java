@@ -22,11 +22,6 @@ public class PaintingAdapter extends RecyclerView.Adapter<PaintingAdapter.Painti
     public PaintingAdapter(List<PaintingContent.PaintingItem> items, Activity context) {
         this.mValues = items;
         this.activity = context;
-        try {
-            itemClickListener = (ItemClickListener) context;
-        } catch (ClassCastException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

@@ -65,7 +65,6 @@ public class DrawingSurface extends SurfaceView implements SurfaceHolder.Callbac
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         performClick();
-        Log.i(DrawingSurface.class.getSimpleName(), "click");
         synchronized (DrawingSurface.this) {
             float X = event.getX();
             float Y = event.getY();
@@ -107,6 +106,7 @@ public class DrawingSurface extends SurfaceView implements SurfaceHolder.Callbac
                     synchronized (DrawingSurface.this) {
                         if (threadWorking) {
                             canvas1.drawBitmap(bitmap, identityMatrix, null);
+
                             if(!path.isEmpty())
                                 canvas1.drawPath(path, pathPaint);
                         }
@@ -119,7 +119,7 @@ public class DrawingSurface extends SurfaceView implements SurfaceHolder.Callbac
                 }
             }
             try {
-                Thread.sleep(1000 / 50); // 25
+                Thread.sleep(1000 / 60); // 25
             } catch (InterruptedException ignored) { }
         }
     }
@@ -131,6 +131,7 @@ public class DrawingSurface extends SurfaceView implements SurfaceHolder.Callbac
         canvas = new Canvas(bitmap);
         canvas.drawARGB(255, 255, 255, 255);
         identityMatrix = new Matrix();
+        this.resumeDrawing();
     }
 
     @Override
@@ -165,8 +166,8 @@ public class DrawingSurface extends SurfaceView implements SurfaceHolder.Callbac
         PaintingContent.PaintingItem paintingItem = new PaintingContent.PaintingItem(filename, imagesDir + "/" + filename);
 
         File file = new File(imagesDir, filename);
-        try {
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(file));
+        try(FileOutputStream outputStream = new FileOutputStream(file)) {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
             PaintingContent.addItem(paintingItem);
             return true;
         } catch (Exception e) {
