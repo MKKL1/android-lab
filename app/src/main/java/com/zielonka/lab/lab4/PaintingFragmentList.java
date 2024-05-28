@@ -26,9 +26,7 @@ public class PaintingFragmentList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
-//        wczytanie listy obrazkow
         List<PaintingContent.PaintingItem> paintingItemList = PaintingContent.getPaintingItems();
-//        ustawienie adaptera
         PaintingAdapter paintingAdapter = new PaintingAdapter(paintingItemList, getActivity());
         RecyclerView recyclerView = view.findViewById(R.id.paintingList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

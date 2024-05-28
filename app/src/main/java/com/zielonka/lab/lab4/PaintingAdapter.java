@@ -3,11 +3,14 @@ package com.zielonka.lab.lab4;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zielonka.lab.databinding.FragmentItemBinding;
@@ -27,13 +30,15 @@ public class PaintingAdapter extends RecyclerView.Adapter<PaintingAdapter.Painti
     @Override
     public PaintingAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         FragmentItemBinding binding = FragmentItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new PaintingAdapterViewHolder(binding);  // Pass the adapter's listener here
+        return new PaintingAdapterViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(final PaintingAdapterViewHolder holder, int position) {
         PaintingContent.PaintingItem paintingItem = mValues.get(position);
         holder.setItemFilename(paintingItem.getFilename());
+        Bitmap bitmap = BitmapFactory.decodeFile(paintingItem.filepath);
+        holder.setImage(bitmap);
     }
 
     @Override
@@ -49,17 +54,22 @@ public class PaintingAdapter extends RecyclerView.Adapter<PaintingAdapter.Painti
     }
 
     public class PaintingAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public final TextView mItemFilename;
+        public final TextView itemFilename;
         public final Button paintingDetailsButton;
+        private final ImageView imageView;
 
         public PaintingAdapterViewHolder(FragmentItemBinding binding) {
             super(binding.getRoot());
-            mItemFilename = binding.itemFilename;
+            itemFilename = binding.itemFilename;
             paintingDetailsButton = binding.paintingDetailsButton;
+            imageView = binding.itemImage;
             binding.paintingDetailsButton.setOnClickListener(this);
         }
         public void setItemFilename(String filename){
-            mItemFilename.setText(filename);
+            itemFilename.setText(filename);
+        }
+        public void setImage(Bitmap bm) {
+            imageView.setImageBitmap(bm);
         }
 
         @Override

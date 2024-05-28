@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
+          android:layout_height="50sp"
           android:orientation="horizontal"
     >
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="50sp"
+        android:layout_height="match_parent"/>
 
     <TextView
         android:id="@+id/item_filename"
@@ -12,7 +17,7 @@
         android:textSize="12sp"
         android:text="NAZWA_PLIKU" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/paintingDetailsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
