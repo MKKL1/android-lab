@@ -3,15 +3,15 @@ package com.zielonka.lab.lab4;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaintingContent {
+public class PaintingContainer {
 
-    public static final List<PaintingItem> PAINTING_ITEMS = new ArrayList<PaintingItem>();
+    public static final List<PaintingItem> paintings = new ArrayList<PaintingItem>();
 
     public static void addItem(PaintingItem item) {
-        PAINTING_ITEMS.add(item);
+        paintings.add(item);
     }
-    public static List<PaintingItem> getPaintingItems(){
-        return PAINTING_ITEMS;
+    public static List<PaintingItem> getPaintings(){
+        return paintings;
     }
 
     public static class PaintingItem{

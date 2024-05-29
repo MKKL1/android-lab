@@ -18,7 +18,6 @@ import androidx.annotation.NonNull;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.Objects;
 
 public class DrawingSurface extends SurfaceView implements SurfaceHolder.Callback, Runnable{
     private final SurfaceHolder holder;
@@ -149,26 +148,21 @@ public class DrawingSurface extends SurfaceView implements SurfaceHolder.Callbac
 
     public boolean saveCanvas(String filename) {
         String imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-//        robimy folder LAB5 na rysunki
-        File dir = new File(imagesDir + File.separator + "LAB5");
+        File dir = new File(imagesDir + File.separator + "LAB4");
         if (!dir.exists()){
             if (!dir.mkdirs()) {
                 Log.e("ERROR", "Problem przy tworzeniu katalogu " + dir);
                 return false;
             }
         }
-//        dodanie folderu do sciezki zapisu pliku
-        imagesDir+=File.separator+"LAB5";
-
-//        co odpalenie apki bez zmiany parametru filename w Lab5Activity będą się nadpisywac, chyba spoko mniej kasowania śmeici z telefonu
-        filename +=  "_" + PaintingContent.getPaintingItems().size() + ".jpg";
-//        filename +=  "rysunek_" + UUID.randomUUID().toString() + ".jpg";
-        PaintingContent.PaintingItem paintingItem = new PaintingContent.PaintingItem(filename, imagesDir + "/" + filename);
+        imagesDir+=File.separator+"LAB4";
+        filename +=  "_" + PaintingContainer.getPaintings().size() + ".jpg";
+        PaintingContainer.PaintingItem paintingItem = new PaintingContainer.PaintingItem(filename, imagesDir + "/" + filename);
 
         File file = new File(imagesDir, filename);
         try(FileOutputStream outputStream = new FileOutputStream(file)) {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-            PaintingContent.addItem(paintingItem);
+            PaintingContainer.addItem(paintingItem);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

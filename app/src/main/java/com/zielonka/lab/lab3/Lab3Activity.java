@@ -60,6 +60,7 @@ public class Lab3Activity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         ContextCompat.registerReceiver(this,
                 fileProgressReceiver,
                 new IntentFilter(DownloadService.BROADCAST_ID),
@@ -84,6 +85,9 @@ public class Lab3Activity extends AppCompatActivity {
 //        });
         binding = ActivityLab3Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setTitle("Zadanie");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         binding.getInfo.setOnClickListener(v -> {
             String urlText = binding.url.getText().toString();

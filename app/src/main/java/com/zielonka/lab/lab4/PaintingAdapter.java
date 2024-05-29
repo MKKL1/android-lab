@@ -20,9 +20,9 @@ import java.util.List;
 public class PaintingAdapter extends RecyclerView.Adapter<PaintingAdapter.PaintingAdapterViewHolder> {
 
     Activity activity;
-    List<PaintingContent.PaintingItem> mValues;
+    List<PaintingContainer.PaintingItem> mValues;
     private ItemClickListener itemClickListener;
-    public PaintingAdapter(List<PaintingContent.PaintingItem> items, Activity context) {
+    public PaintingAdapter(List<PaintingContainer.PaintingItem> items, Activity context) {
         this.mValues = items;
         this.activity = context;
     }
@@ -35,7 +35,7 @@ public class PaintingAdapter extends RecyclerView.Adapter<PaintingAdapter.Painti
 
     @Override
     public void onBindViewHolder(final PaintingAdapterViewHolder holder, int position) {
-        PaintingContent.PaintingItem paintingItem = mValues.get(position);
+        PaintingContainer.PaintingItem paintingItem = mValues.get(position);
         holder.setItemFilename(paintingItem.getFilename());
         Bitmap bitmap = BitmapFactory.decodeFile(paintingItem.filepath);
         holder.setImage(bitmap);
